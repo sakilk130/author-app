@@ -43,7 +43,7 @@ const Author: FC = () => {
     <div className="container">
       <div className="row p-2">
         {data.results.map((author: any) => (
-          <div className="col p-3 " key={author._id}>
+          <div className="col p-3" key={author._id}>
             <Card
               id={author._id}
               name={author.name}
@@ -56,11 +56,19 @@ const Author: FC = () => {
       </div>
 
       <div className="d-flex align-items-center justify-content-center bg-light rounded-3 mx-3">
-        <button className="btn btn-primary m-2" onClick={prevPageHandler}>
+        <button
+          className={`btn btn-primary m-2`}
+          onClick={prevPageHandler}
+          disabled={data.page === 1}
+        >
           &laquo;
         </button>
         <p className="text-center m-2 fw-bolder">Page: {data.page}</p>
-        <button className="btn btn-primary m-2-" onClick={nextPageHandler}>
+        <button
+          className={`btn btn-primary m-2`}
+          onClick={nextPageHandler}
+          disabled={data.page === data.totalPages}
+        >
           &raquo;
         </button>
       </div>

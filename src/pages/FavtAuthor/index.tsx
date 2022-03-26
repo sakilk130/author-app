@@ -1,8 +1,8 @@
-import React from "react";
+import { FC } from "react";
 import Card from "../../components/Card";
 import { useFetchFavoriteAuthor } from "../../hooks/useFetchAuthor";
 
-const FavtAuthor = () => {
+const FavtAuthor: FC = () => {
   const { data, isError, error, isLoading, isFetching } =
     useFetchFavoriteAuthor();
   if (isError) {

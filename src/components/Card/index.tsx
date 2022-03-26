@@ -17,19 +17,23 @@ const Card: FC<IAuthor> = ({ id, name, bio, link, isFavt }) => {
   const [showMore, setShowMore] = useState(false);
   const { mutate } = useAddFavoriteAuthor();
   const { mutate: removeFavtAuthor } = useRemoveFavtAuthor();
+
   return (
     <div className="card" style={{ width: "18rem" }}>
       <div className="row">
         <div className="col-8">
-          <div className=" card-body">
-            <h5 className="card-title">{name}</h5>
+          <div className="card-body">
+            <a href={link} target="_blank">
+              <h5 className="card-title">{name}</h5>
+            </a>
+
             <p className="card-text">
               {showMore ? bio : `${bio.substring(0, 50)}...`}
               <span
                 className=" btn text-primary d-inline"
                 onClick={() => setShowMore(!showMore)}
               >
-                {showMore ? "Show less" : "Show more"}
+                {showMore ? "See less" : "See more"}
               </span>
             </p>
           </div>
