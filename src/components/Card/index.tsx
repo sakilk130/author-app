@@ -23,7 +23,7 @@ const Card: FC<IAuthor> = ({ id, name, bio, link, isFavt }) => {
       <div className="row">
         <div className="col-8">
           <div className="card-body">
-            <a href={link} target="_blank">
+            <a href={link} target="_blank" rel="noreferrer">
               <h5 className="card-title">{name}</h5>
             </a>
 
