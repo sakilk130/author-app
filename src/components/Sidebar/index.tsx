@@ -20,7 +20,7 @@ const Sidebar: FC = () => {
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
             <NavLink
-              to="/author"
+              to="/authors"
               className="nav-link"
               activeClassName="nav-link active"
               aria-current="page"

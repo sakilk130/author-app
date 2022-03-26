@@ -1,4 +1,8 @@
 import { FC, useState } from "react";
+import {
+  useAddFavoriteAuthor,
+  useRemoveFavtAuthor,
+} from "../../hooks/useFetchAuthor";
 import "./style/index.css";
 
 interface IAuthor {
@@ -6,10 +10,13 @@ interface IAuthor {
   name: string;
   bio: string;
   link: string;
+  isFavt: boolean;
 }
 
-const Card: FC<IAuthor> = ({ id, name, bio, link }) => {
+const Card: FC<IAuthor> = ({ id, name, bio, link, isFavt }) => {
   const [showMore, setShowMore] = useState(false);
+  const { mutate } = useAddFavoriteAuthor();
+  const { mutate: removeFavtAuthor } = useRemoveFavtAuthor();
   return (
     <div className="card" style={{ width: "18rem" }}>
       <div className="row">
@@ -28,8 +35,24 @@ const Card: FC<IAuthor> = ({ id, name, bio, link }) => {
           </div>
         </div>
         <div className="col-4 text-end">
-          <button className="btn btn-outline-primary btn-sm">Add Favt</button>
-          <button className="btn btn-outline-danger btn-sm">Remove Favt</button>
+          <button
+            className={`btn btn-sm ${
+              isFavt ? "btn-outline-danger" : "btn-outline-primary"
+            }`}
+            onClick={
+              isFavt
+                ? () => removeFavtAuthor(id)
+                : () =>
+                    mutate({
+                      id,
+                      name,
+                      bio,
+                      link,
+                    })
+            }
+          >
+            {isFavt ? "Remove Favt" : "Add Favt"}
+          </button>
         </div>
       </div>
     </div>
